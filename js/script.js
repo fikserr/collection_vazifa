@@ -40,42 +40,65 @@ function soat() {
 soat()
 
 
-let stopHours = document.querySelector('.stopwatch__hours');
-let stopMinute = document.querySelector('.stopwatch__minutes');
-let stopSecond = document.querySelector('.stopwatch__seconds');
-let startBtn = document.querySelector('.stopwatch__btn');
 
-let seconds = 0;
-let minut = 0;
-let sot = 0;
 
-let intervalId; // Yangi o'zgaruvchi qo'shildi
+// sekundomer
+let stopWatchSecond = document.querySelector('.stopwatch__seconds');
+let stopWatchMinute = document.querySelector('.stopwatch__minutes');
+let stopWatchHours = document.querySelector('.stopwatch__hours');
+let stopWatchBtn = document.querySelector('.stopwatch__btn');
+let stopWatchLight = document.querySelector('.tabsLink__span');
 
-startBtn.addEventListener('click', function () {
-    if (startBtn.innerHTML === "start") {
-        intervalId = setInterval(function () {
-            seconds++;
-            if (seconds === 60) {
-                seconds = 0;
-                minut++;
-                if (minut === 60) {
-                    minut = 0;
-                    sot++;
-                }
-            }
-
-            stopSecond.innerHTML = seconds < 10 ? '0' + seconds : seconds;
-            stopMinute.innerHTML = minut < 10 ? '0' + minut : minut;
-            stopHours.innerHTML = sot < 10 ? '0' + sot : sot;
-
-        }, 1000);
-
-        startBtn.innerHTML = "stop";
-        startBtn.style = "background: red;";
-    } else {
-        clearInterval(intervalId); // Intervalni to'xtatish
-        startBtn.innerHTML = "start";
-        startBtn.style = ""; // Orqaga qaytarish uchun stilni tozalash
+stopWatchBtn.addEventListener('click', function () {
+    if (this.innerHTML.toLowerCase() == "start"){
+    this.innerHTML = "STOP"
+    stopWatchLight.classList.add('active')
+    interval = setInterval(() => {
+        stopWatch()
+    }, 1000);
+    }else if(this.innerHTML.toLowerCase() == "stop"){
+        this.innerHTML = "CLEAR"
+        stopWatchLight.classList.remove('active')
+        stopWatchLight.classList.add('active_clear')
+        clearInterval(interval)
+    }else if(this.innerHTML.toLowerCase() == "clear"){
+        this.innerHTML = "START"
+        stopWatchLight.classList.remove('active_clear')
+        stopWatchHours.innerHTML = 0
+        stopWatchMinute.innerHTML = 0
+        stopWatchSecond.innerHTML = 0
     }
-});
+})
+
+let stopWatchCount = 0
+
+function stopWatch() {
+    stopWatchCount++
+    if (stopWatchCount < 60) {
+        stopWatchSecond.innerHTML = stopWatchCount
+    }
+    if (stopWatchCount > 59) {
+        stopWatchMinute.innerHTML++
+        stopWatchCount = 0
+        stopWatchSecond.innerHTML = stopWatchCount
+    }
+   if (stopWatchMinute.innerHTML > 59) {
+    stopWatchHours.innerHTML++
+    stopWatchMinute.innerHTML = 0
+   }
+}
+
+
+// kalkulyator
+
+let clickBtn = document.querySelector('.calc__btn');
+let clickScreenOut = document.querySelector('.calc__screen-out');
+
+clickBtn.addEventListener('click', function () {
+   if (clickBtn.innerHTML == "ac") {
+        console.log(clickBtn);
+   }else if(clickBtn.innerHTML == "+/-"){
+        console.log(clickBtn);
+   }
+})
 
