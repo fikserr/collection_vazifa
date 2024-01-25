@@ -91,14 +91,51 @@ function stopWatch() {
 
 // kalkulyator
 
-let clickBtn = document.querySelector('.calc__btn');
+let clickBtns = document.querySelectorAll('.calc__btn');
 let clickScreenOut = document.querySelector('.calc__screen-out');
 
-clickBtn.addEventListener('click', function () {
-   if (clickBtn.innerHTML == "ac") {
-        console.log(clickBtn);
-   }else if(clickBtn.innerHTML == "+/-"){
-        console.log(clickBtn);
-   }
-})
+clickBtns.forEach((el) => {
+    // Har bir tugma bosilganda chaqiriladigan funksiya
+    console.log(el);
+    el.addEventListener('click', function qaytaBosilish () {
+        if (this.innerHTML == 1) {
+            clickScreenOut.innerHTML += 1;
+        }else if(this.innerHTML == 2){
+            clickScreenOut.innerHTML += 2;
+        }else if(this.innerHTML == 3){
+            clickScreenOut.innerHTML += 3;
+        }else if(this.innerHTML == 4){
+            clickScreenOut.innerHTML += 4;
+        }else if(this.innerHTML == 5){
+            clickScreenOut.innerHTML += 5;
+        }else if(this.innerHTML == 6){
+            clickScreenOut.innerHTML += 6;
+        }else if(this.innerHTML == 7){
+            clickScreenOut.innerHTML += 7;
+        }else if(this.innerHTML == 8){
+            clickScreenOut.innerHTML += 8;
+        }else if(this.innerHTML == 9){
+            clickScreenOut.innerHTML += 9;
+        }else if(this.innerHTML == 0){
+            clickScreenOut.innerHTML += 0;
+        }else if(this.innerHTML == '.'){
+            clickScreenOut.innerHTML += ".";
+        }else if(this.innerHTML == 'ac'){
+            clickScreenOut.innerHTML = "";
+        }else if(this.innerHTML == 'ce'){
+            
+            let myArray = [clickScreenOut.innerHTML]
+            myArray.shift()
+            console.log(myArray);
+        }
+    })
 
+});
+
+
+
+
+// let meva = ['nok', 'uzum', 'anor', 'xurmo', 'bexi']
+// meva.forEach((el,i,arr)=>{
+//     console.log(i);
+// })
