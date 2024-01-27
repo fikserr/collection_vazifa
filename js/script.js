@@ -48,6 +48,7 @@ let stopWatchMinute = document.querySelector('.stopwatch__minutes');
 let stopWatchHours = document.querySelector('.stopwatch__hours');
 let stopWatchBtn = document.querySelector('.stopwatch__btn');
 let stopWatchLight = document.querySelector('.tabsLink__span');
+let stopWatchAudio = document.querySelector('.stopwatch__audio')
 
 stopWatchBtn.addEventListener('click', function () {
     if (this.innerHTML.toLowerCase() == "start"){
@@ -73,8 +74,9 @@ stopWatchBtn.addEventListener('click', function () {
 let stopWatchCount = 0
 
 function stopWatch() {
+    stopWatchAudio.play()
     stopWatchCount++
-    if (stopWatchCount < 60) {
+    if (stopWatchCount < 59) {
         stopWatchSecond.innerHTML = stopWatchCount
     }
     if (stopWatchCount > 59) {
@@ -116,3 +118,21 @@ arr.forEach(button => {
 })
 
 
+// timer
+
+let timerHour = document.querySelector('.timer__hours')
+let timerMinute = document.querySelector('.timer__minutes')
+let timerSecond = document.querySelector('.timer__seconds')
+let timerPlay = document.querySelector('.timer__set')
+let timerClear = document.querySelector('.timer__clear')
+let timerBtns = document.querySelectorAll('.timer__btn, .timer__clear, .timer__set')
+let timerAudio = document.querySelector('.timer__audio')
+
+
+
+for (let i = 0; i < timerBtns.length; i++) {
+    timerBtns[i].addEventListener('click', function () {
+        console.log(this);
+    })
+    
+}
