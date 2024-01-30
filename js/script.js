@@ -96,6 +96,14 @@ function stopWatch() {
 let clickBtns = document.querySelectorAll('.calc__btn');
 let clickScreenOut = document.querySelector('.calc__screen-out');
 
+const sqrt = () => {
+    clickScreenOut.innerHTML = Math.sqrt(clickScreenOut.innerHTML, 2)
+}
+const pow = () => {
+    clickScreenOut.innerHTML = Math.pow(clickScreenOut.innerHTML, 2)
+}
+
+
 let string = "";
 let arr = Array.from(clickBtns)
 arr.forEach(button => {
@@ -110,6 +118,10 @@ arr.forEach(button => {
         }else if(e.target.innerHTML == "ce"){
             string = string.substring(0, string.length-1);
             clickScreenOut.innerHTML = string;
+        }else if(e.target.innerHTML == "√"){
+            sqrt();
+        }else if(e.target.innerHTML == "%"){
+            pow();
         }else{
             string += e.target.innerHTML;
             clickScreenOut.innerHTML = string;
