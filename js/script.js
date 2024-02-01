@@ -65,9 +65,9 @@ stopWatchBtn.addEventListener('click', function () {
     }else if(this.innerHTML.toLowerCase() == "clear"){
         this.innerHTML = "START"
         stopWatchLight.classList.remove('active_clear')
-        stopWatchHours.innerHTML = 0
-        stopWatchMinute.innerHTML = 0
-        stopWatchSecond.innerHTML = 0
+        stopWatchHours.innerHTML = 0;
+        stopWatchMinute.innerHTML = 0;
+        stopWatchSecond.innerHTML = 0;
     }
 })
 
@@ -144,7 +144,71 @@ let timerAudio = document.querySelector('.timer__audio')
 
 for (let i = 0; i < timerBtns.length; i++) {
     timerBtns[i].addEventListener('click', function () {
-        console.log(this);
+        timerBtn(this.innerHTML);
     })
     
+}
+
+function timerBtn(el) {
+    if (el.toLowerCase() == "play") {
+        timerPlay.innerHTML = "PAUSE"
+        interval = setInterval(() => {
+            timer()
+        }, 10);
+    }else if(el.toLowerCase() == "pause"){
+        timerPlay.innerHTML = "PLAY"
+        timerAudio.pause()
+        clearInterval(interval)
+    }else if(el.toLowerCase() == "clear"){
+        timerHour.innerHTML = ''
+        timerSecond.innerHTML = ''
+        timerMinute.innerHTML = ''
+        timerPlay.innerHTML = "PLAY"
+        timerAudio.pause()
+        clearInterval(interval)
+        timerCount = 0
+    }else{
+        if (timerSecond.innerHTML.length < 2) {
+            let check = timerSecond.innerHTML += el
+            checkCount(check)
+        }else if(timerSecond.innerHTML.length >= 2 && timerMinute.innerHTML.length
+             < 2){
+            timerMinute.innerHTML += el
+        }else if(timerMinute.innerHTML.length >= 2 && timerHour.innerHTML.length
+            < 2){
+           timerHour.innerHTML += el
+       }
+    }
+}
+
+let timerCount = 0
+function checkCount(check) {
+    timerCount = check
+}
+
+function timer() {
+    if(timerCount > 0 ){
+    timerCount--
+    timerSecond.innerHTML = timerCount
+    }else if (timerCount == 0) {
+    if(timerMinute.innerHTML > 0){
+        timerMinute.innerHTML--
+        timerCount = 59
+        timerSecond.innerHTML = timerCount
+    }else{
+        if(timerHour.innerHTML > 0){
+            timerHour.innerHTML--
+            timerMinute.innerHTML = 59
+            timerCount = 59 
+            timerSecond.innerHTML = timerCount
+        }else{
+            timerHour.innerHTML = ''
+            timerSecond.innerHTML = ''
+            timerMinute.innerHTML = ''
+            timerAudio.play()
+        }
+        
+    }
+      
+} 
 }
