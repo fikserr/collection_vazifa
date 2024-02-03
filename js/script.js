@@ -122,7 +122,14 @@ arr.forEach(button => {
             sqrt();
         }else if(e.target.innerHTML == "%"){
             pow();
-        }else{
+        }else if(e.target.innerHTML == "+/-"){
+            let pas = clickScreenOut.innerHTML * -1;
+            clickScreenOut.innerHTML = (pas)
+        }else if (){
+            let passedText = clickScreenOut.innerHTML + "/100";
+            clickScreenOut.innerHTML = eval(passedText);
+        }
+            else{
             string += e.target.innerHTML;
             clickScreenOut.innerHTML = string;
         }
